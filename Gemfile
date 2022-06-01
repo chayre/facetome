@@ -9,8 +9,15 @@ gem "rails", "~> 7.0.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# Use sqlite3 as the database for Active Record for localserver
+group :development, :test do
+  gem 'sqlite3'
+ end
+
+# Use PostgreSQL for production (Heroku deployment)
+group :production do
+  gem 'pg'
+end
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -56,6 +63,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'better_errors', '~> 2.9', '>= 2.9.1'
+  gem 'guard', '~> 2.14'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -70,3 +80,23 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+### New Gems ###
+
+# Bootstrap CSS Framework
+gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+
+# Simple forms to make login/edit forms easier to make
+gem 'simple_form', '~> 5.1'
+
+# Allows easy integration with Gravatar API
+gem 'gravatar_image_tag', '~> 1.2'
+
+# Greatly simplifies user login/oauth/registration/sessions handling
+gem 'devise', '~> 4.8', '>= 4.8.1'
+
+# jQuery JavaScript library
+gem 'jquery-rails'
+
+# Allows for simple pagination
+gem 'will_paginate', '~> 3.3'
